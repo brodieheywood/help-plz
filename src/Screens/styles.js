@@ -1,8 +1,10 @@
 import { StyleSheet } from 'react-native';
 
+const padding = '10%';
+
 const styles = StyleSheet.create({
   home: {
-    padding: '10%',
+    padding: padding,
   },
 });
 
