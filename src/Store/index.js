@@ -3,6 +3,6 @@ import topicSearchReducer from './topicSearchSlice';
 
 export default configureStore({
   reducer: {
-    saveSearch: topicSearchReducer,
+    topicSearch: topicSearchReducer,
   },
 })
