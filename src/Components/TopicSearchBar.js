@@ -1,18 +1,19 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { StyleSheet } from 'react-native';
 import { Searchbar, Text } from 'react-native-paper';
+import { useSelector, useDispatch } from 'react-redux';
+import { saveSearch } from '../Store/topicSearchSlice';
 
 const TopicSearchBar = () => {
-  const [searchQuery, setSearchQuery] = useState('');
-
-  const onChangeSearch = (query) => setSearchQuery(query);
+  const searchQuery = useSelector((state) => state.topicSearch.value);
+  const dispatch = useDispatch();
 
   return (
     <>
       <Text style={styles.wizard}>🧙🏻‍♂️</Text>
       <Searchbar
         placeholder="Search"
-        onChangeText={onChangeSearch}
+        onChangeText={(text) => dispatch(saveSearch(text))}
         value={searchQuery}
       />
     </>
