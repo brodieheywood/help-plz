@@ -8,8 +8,8 @@ const TopicSearchBar = () => {
   const dispatch = useDispatch();
 
   /* 
-  Search query is saved in component while it is being typed. This is the 
-  source of truth for the typed query displayed in the search box.
+  While user is typing in search bar, query is saved into component state.
+  Passed to Redux store on submit.
   */
   const [tempSearchQuery, setTempSearchQuery] = useState('');
 
@@ -20,7 +20,12 @@ const TopicSearchBar = () => {
         placeholder="Search"
         onChangeText={(text) => setTempSearchQuery(text)}
         value={tempSearchQuery}
-        onSubmitEditing={() => dispatch(saveSearch(tempSearchQuery))}
+        autoCorrect={false}
+        onSubmitEditing={() => { 
+          if (tempSearchQuery.trim().length) { //do nothing when whitespace
+            dispatch(saveSearch(tempSearchQuery));
+          }
+        }}
       />
     </View>
   );
