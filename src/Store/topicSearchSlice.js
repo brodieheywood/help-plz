@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit'
 export const topicSearchSlice = createSlice({
   name: 'topicSearch',
   initialState: {
-    value: '',
+    value: '',  // to get empty list from api - TODO use axios to handle 400 errors (eg. 404 from whitespace or empty tag)
   },
   reducers: {
     saveSearch: (state, action) => {
