@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { Searchbar, Text } from 'react-native-paper';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { saveSearch } from '../Store/topicSearchSlice';
 
 const TopicSearchBar = () => {
@@ -13,15 +13,8 @@ const TopicSearchBar = () => {
   */
   const [tempSearchQuery, setTempSearchQuery] = useState('');
 
-  /* 
-  After search query is submitted, the tempSearchQuery is saved in the Redux 
-  store. This is used as the source of truth for anything outside of the 
-  search bar (eg. "Searching for experts in ..." text).
-  */
-  const searchQuery = useSelector((state) => state.topicSearch.value);
-
   return (
-    <>
+    <View style={styles.componentContainer}>
       <Text style={styles.wizard}>🧙🏻‍♂️</Text>
       <Searchbar
         placeholder="Search"
@@ -29,12 +22,15 @@ const TopicSearchBar = () => {
         value={tempSearchQuery}
         onSubmitEditing={() => dispatch(saveSearch(tempSearchQuery))}
       />
-      <Text>Searching for experts in: {searchQuery}</Text>
-    </>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
+  componentContainer: {
+    paddingHorizontal: '7.5%',
+    paddingTop: '7.5%',
+  },
   wizard: {
     fontSize: 72,
   },
