@@ -1,11 +1,12 @@
 import React from 'react';
-import { SafeAreaView, StyleSheet, View } from 'react-native';
+import { SafeAreaView, View } from 'react-native';
 import { withTheme } from 'react-native-paper';
 import { StatusBar } from 'expo-status-bar';
 import TopicSearchBar from '../../Components/TopicSearchBar';
 import ExpertsList from '../../Components/ExpertsList';
 import { object } from 'prop-types';
 import ExplainerText from '../../Components/ExplainerText';
+import styles from '../styles';
 
 const HomeScreen = ({ theme }) => {
   const themedBackgroundColor = theme.colors.background;
@@ -28,12 +29,6 @@ const HomeScreen = ({ theme }) => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  componentContainer: {
-    flex: 1,
-  },
-});
 
 HomeScreen.propTypes = {
   theme: object.isRequired,
