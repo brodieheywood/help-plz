@@ -10,10 +10,10 @@ const ExplainerText = () => {
   const initialRender = useRef(true);
   useEffect(() => {
     if (initialRender.current) {
-      setExplainerTextString('Search Stack Overflow for an expert.');
+      setExplainerTextString('Find an expert on Stack Overflow.');
       initialRender.current = false;
     } else if (searchQuery) {
-      setExplainerTextString(`${searchQuery} experts:`);
+      setExplainerTextString(`${searchQuery.trim()} experts:`);
     }
   }, [searchQuery]);
 
@@ -22,8 +22,9 @@ const ExplainerText = () => {
 
 const styles = StyleSheet.create({
   text: {
-    marginLeft: '10%',
-    marginVertical: '2.5%',
+    marginBottom: '2.5%',
+    marginLeft: '9%',
+    marginTop: '2%',
   },
 });
 
