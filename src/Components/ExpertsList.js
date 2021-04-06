@@ -18,8 +18,8 @@ const ExpertsList = () => {
   const users = useSelector(selectAllUsers);
   const [noResultsText, setNoResultsText] = useState('');
 
+  /* Fetch users (but not on initial render). */
   useEffect(() => {
-    // do not fire on initial render
     if (initialRender.current) {
       initialRender.current = false;
     } else {
@@ -27,12 +27,21 @@ const ExpertsList = () => {
     }
   }, [searchQuery]);
 
+  /* Display loading indicator while awaiting API response. */
   if (loading) {
     return <ActivityIndicator size="large" style={styles.activityIndicator} />;
   }
 
+  /* Display suggestion text if API response returns no users. */
   if (!initialRender.current && users.length == 0) {
-    setTimeout(() => setNoResultsText('No results, try "JavaScript".'), 1000);
+    setTimeout(
+      () =>
+        setNoResultsText(
+          'No results for this tag on Stack Overflow.' +
+            '\nTry "JavaScript" or "PostgreSQL".'
+        ),
+      1000
+    );
     return (
       <View style={styles.noResultsTextContainer}>
         <Text style={styles.noResultsText}>{noResultsText}</Text>
@@ -89,12 +98,12 @@ const styles = StyleSheet.create({
   noResultsText: {
     flex: 1,
     marginHorizontal: '10%',
+    textAlign: 'center',
   },
   noResultsTextContainer: {
     alignItems: 'center',
     flex: 1,
-    justifyContent: 'center',
-    paddingTop: '40%',
+    paddingTop: '35%',
   },
 });
 

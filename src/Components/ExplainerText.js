@@ -4,13 +4,13 @@ import { useSelector } from 'react-redux';
 import { Headline } from 'react-native-paper';
 
 const ExplainerText = () => {
+  const initialRender = useRef(true);
   const searchQuery = useSelector((state) => state.topicSearch.value);
   const [explainerTextString, setExplainerTextString] = useState('');
-
-  const initialRender = useRef(true);
+  
   useEffect(() => {
     if (initialRender.current) {
-      setExplainerTextString('Find an expert on Stack Overflow.');
+      setExplainerTextString('Search for a topic to find an expert.');
       initialRender.current = false;
     } else if (searchQuery) {
       setExplainerTextString(`${searchQuery.trim()} experts:`);
