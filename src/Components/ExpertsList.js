@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { ScrollView, StyleSheet, View } from 'react-native';
+import { Linking, ScrollView, StyleSheet, View } from 'react-native';
 import {
   Avatar,
   ActivityIndicator,
@@ -44,12 +44,20 @@ const ExpertsList = () => {
             )}
             right={() => (
               <IconButton
-                icon="email"
+                icon="open-in-new"
                 size={20}
-                onPress={() => alert('pressed')}
+                onPress={() =>
+                  Linking.openURL(user.user.link).catch((err) =>
+                    console.error('An error occurred', err)
+                  )
+                }
               />
             )}
-            onPress={() => alert('pressed')}
+            onPress={() =>
+              Linking.openURL(user.user.link).catch((err) =>
+                console.error('An error occurred', err)
+              )
+            }
           />
         ))}
       </ScrollView>
@@ -59,12 +67,12 @@ const ExpertsList = () => {
 
 const styles = StyleSheet.create({
   activityIndicator: {
-    paddingTop: '40%',
+    marginTop: '40%',
   },
   componentContainer: {
     flex: 1,
-    paddingBottom: '7.5%',
-    paddingHorizontal: '7.5%',
+    marginBottom: '10%',
+    marginHorizontal: '7.5%',
   },
 });
 
