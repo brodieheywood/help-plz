@@ -3,10 +3,13 @@ import {
   createEntityAdapter,
   createSlice,
 } from '@reduxjs/toolkit';
+import config from '../Config';
 
 export const fetchUsers = createAsyncThunk('users/fetchUsers', async (tag) => {
   const response = await fetch(
-    `https://api.stackexchange.com/2.2/tags/${tag}/top-answerers/all_time?site=stackoverflow&key=feuDYiP9vIzb9)uvUUHTqg((`
+    config.API_URL +
+      `tags/${tag}/top-answerers/all_time?site=stackoverflow` +
+      config.API_KEY
   );
   return (await response.json()).items;
 });
