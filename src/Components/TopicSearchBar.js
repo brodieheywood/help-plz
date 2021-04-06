@@ -34,8 +34,8 @@ const TopicSearchBar = () => {
 
 const styles = StyleSheet.create({
   componentContainer: {
-    paddingHorizontal: '7.5%',
-    paddingTop: '7.5%',
+    marginHorizontal: '7.5%',
+    marginTop: '7.5%',
   },
   wizard: {
     fontSize: 72,

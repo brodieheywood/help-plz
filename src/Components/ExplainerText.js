@@ -17,16 +17,13 @@ const ExplainerText = () => {
     }
   }, [searchQuery]);
 
-  return (
-    <Headline style={styles.explainerText}>{explainerTextString}</Headline>
-  );
+  return <Headline style={styles.text}>{explainerTextString}</Headline>;
 };
 
 const styles = StyleSheet.create({
-  explainerText: {
-    paddingBottom: '2.5%',
-    paddingLeft: '10%',
-    paddingTop: '2.5%',
+  text: {
+    marginLeft: '10%',
+    marginVertical: '2.5%',
   },
 });
 
