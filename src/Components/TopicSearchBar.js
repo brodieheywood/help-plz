@@ -21,8 +21,9 @@ const TopicSearchBar = () => {
         onChangeText={(text) => setTempSearchQuery(text)}
         value={tempSearchQuery}
         autoCorrect={false}
-        onSubmitEditing={() => { 
-          if (tempSearchQuery.trim().length) { //do nothing when whitespace
+        onSubmitEditing={() => {
+          if (tempSearchQuery.trim().length) {
+            //do nothing when whitespace
             dispatch(saveSearch(tempSearchQuery));
           }
         }}

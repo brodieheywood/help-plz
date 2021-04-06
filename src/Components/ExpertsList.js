@@ -11,12 +11,10 @@ import { fetchUsers, selectAllUsers } from '../Store/usersSlice';
 
 const ExpertsList = () => {
   const dispatch = useDispatch();
-
+  const initialRender = useRef(true);
+  const searchQuery = useSelector((state) => state.topicSearch.value);
   const { loading } = useSelector((state) => state.users);
   const users = useSelector(selectAllUsers);
-
-  const searchQuery = useSelector((state) => state.topicSearch.value);
-  const initialRender = useRef(true);
 
   useEffect(() => {
     if (initialRender.current) {
@@ -37,7 +35,7 @@ const ExpertsList = () => {
           <List.Item
             key={user.user.user_id}
             title={`${user.user.display_name}`}
-            description={'LOCATION HERE'}
+            description={`Posts: ${user.post_count}`}
             left={() => (
               <Avatar.Image
                 source={{ uri: user.user.profile_image }}
