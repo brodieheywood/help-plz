@@ -10,6 +10,13 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchUsers, selectAllUsers } from '../Store/usersSlice';
 
+/* For onPress event: open link to Stack Overflow profile. */
+const openLink = (link) => {
+  Linking.openURL(link).catch((err) =>
+    console.error('Unable to open link. Check URL.', err)
+  );
+};
+
 const ExpertsList = () => {
   const dispatch = useDispatch();
   const initialRender = useRef(true);
@@ -67,18 +74,10 @@ const ExpertsList = () => {
               <IconButton
                 icon="open-in-new"
                 size={20}
-                onPress={() =>
-                  Linking.openURL(user.user.link).catch((err) =>
-                    console.error('An error occurred', err)
-                  )
-                }
+                onPress={() => openLink(user.user.link)}
               />
             )}
-            onPress={() =>
-              Linking.openURL(user.user.link).catch((err) =>
-                console.error('An error occurred', err)
-              )
-            }
+            onPress={() => openLink(user.user.link)}
           />
         ))}
       </ScrollView>
