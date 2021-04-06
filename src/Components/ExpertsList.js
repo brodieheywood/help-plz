@@ -1,10 +1,11 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { Linking, ScrollView, StyleSheet, View } from 'react-native';
 import {
   Avatar,
   ActivityIndicator,
   IconButton,
   List,
+  Text,
 } from 'react-native-paper';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchUsers, selectAllUsers } from '../Store/usersSlice';
@@ -15,10 +16,12 @@ const ExpertsList = () => {
   const searchQuery = useSelector((state) => state.topicSearch.value);
   const { loading } = useSelector((state) => state.users);
   const users = useSelector(selectAllUsers);
+  const [noResultsText, setNoResultsText] = useState('');
 
   useEffect(() => {
+    // do not fire on initial render
     if (initialRender.current) {
-      initialRender.current = false; //do not fire on initial render
+      initialRender.current = false;
     } else {
       dispatch(fetchUsers(searchQuery));
     }
@@ -26,6 +29,15 @@ const ExpertsList = () => {
 
   if (loading) {
     return <ActivityIndicator size="large" style={styles.activityIndicator} />;
+  }
+
+  if (!initialRender.current && users.length == 0) {
+    setTimeout(() => setNoResultsText('No results, try "JavaScript".'), 1000);
+    return (
+      <View style={styles.noResultsTextContainer}>
+        <Text style={styles.noResultsText}>{noResultsText}</Text>
+      </View>
+    );
   }
 
   return (
@@ -73,6 +85,16 @@ const styles = StyleSheet.create({
     flex: 1,
     marginBottom: '10%',
     marginHorizontal: '7.5%',
+  },
+  noResultsText: {
+    flex: 1,
+    marginHorizontal: '10%',
+  },
+  noResultsTextContainer: {
+    alignItems: 'center',
+    flex: 1,
+    justifyContent: 'center',
+    paddingTop: '40%',
   },
 });
 

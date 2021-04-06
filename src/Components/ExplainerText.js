@@ -23,8 +23,8 @@ const ExplainerText = () => {
 const styles = StyleSheet.create({
   text: {
     marginBottom: '2.5%',
-    marginLeft: '9%',
-    marginTop: '2%',
+    marginHorizontal: '9%',
+    marginTop: '3%',
   },
 });
 
